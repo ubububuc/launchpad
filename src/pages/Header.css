@@ -1,0 +1,66 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  position: relative;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+}
+
+.navbar a {
+  color: #fff;
+  padding: 0 15px;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
+
+.wallet-info {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.connect-wallet-button {
+  padding: 8px 15px;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.connect-wallet-button:hover {
+  background-color: #4b55c2;
+}
+
+.wallet-address {
+  background-color: #4b55c2;
+  padding: 8px 15px;
+  border-radius: 5px;
+}
+
+.network-switcher {
+  margin-left: 10px;
+}
+
+.network-switcher select {
+  padding: 5px 10px;
+  background-color: #444;
+  color: #fff;
+  border: 1px solid #555;
+  border-radius: 5px;
+}
+
+.network-switcher select:focus {
+  outline: none;
+  border-color: #777;
+}
