@@ -5,6 +5,7 @@ const Header = ({ account, connectWallet, switchNetwork }) => {
   const [network, setNetwork] = useState('0x5'); // Default to Sepolia
   const [price, setPrice] = useState(null);
 
+  // Fetch price based on network ID
   const fetchPrice = async (networkId) => {
     let priceUrl;
     switch (networkId) {
@@ -17,6 +18,15 @@ const Header = ({ account, connectWallet, switchNetwork }) => {
       case '0x13881': // Polygon Mumbai Testnet
         priceUrl = 'https://api.polygonscan.com/api'; // Example; replace with an actual API for MATIC price
         break;
+      case '0x7A': // Base Testnet
+        priceUrl = 'https://api.etherscan.io/api?module=stats&action=ethprice&apikey=YOUR_API_KEY'; // Example; replace with actual API
+        break;
+      case '0xA4B1': // Arbitrum Rinkeby Testnet
+        priceUrl = 'https://api.etherscan.io/api?module=stats&action=ethprice&apikey=YOUR_API_KEY'; // Replace with actual API
+        break;
+      case '0xA5': // Optimism Goerli Testnet
+        priceUrl = 'https://api.etherscan.io/api?module=stats&action=ethprice&apikey=YOUR_API_KEY'; // Replace with actual API
+        break;
       default: // Ethereum and other networks
         priceUrl = 'https://api.etherscan.io/api?module=stats&action=ethprice&apikey=YOUR_API_KEY'; // Replace with actual API
     }
@@ -24,7 +34,7 @@ const Header = ({ account, connectWallet, switchNetwork }) => {
     try {
       const response = await fetch(priceUrl);
       const data = await response.json();
-      setPrice(data.price || 'N/A'); // Adjust based on the API response structure
+      setPrice(data.result?.ethusd || 'N/A'); // Adjust based on the API response structure
     } catch (error) {
       console.error('Error fetching price:', error);
       setPrice('N/A');
@@ -41,6 +51,15 @@ const Header = ({ account, connectWallet, switchNetwork }) => {
     switchNetwork(selectedNetwork);
   };
 
+  // Debugging: Log account value and type
+  console.log('Account:', account);
+  console.log('Account Type:', typeof account);
+
+  // Ensure `account` is a string and has a length before using `slice`
+  const displayAccount = typeof account === 'string' && account.length > 0
+    ? `${account.slice(0, 6)}...${account.slice(-4)}`
+    : 'Not Connected';
+
   return (
     <div className="header">
       <div className="navbar">
@@ -52,13 +71,13 @@ const Header = ({ account, connectWallet, switchNetwork }) => {
       <div className="wallet-info">
         {account ? (
           <>
-            <span className="wallet-address">Wallet: {account.slice(0, 6)}...{account.slice(-4)}</span>
+            <span className="wallet-address">Wallet: {displayAccount}</span>
             <div className="network-switcher">
               <select onChange={handleNetworkChange} value={network}>
                 <option value="0x5">Sepolia Ethereum Testnet</option>
                 <option value="0x61">BSC Testnet</option>
                 <option value="0x13881">Polygon Mumbai Testnet</option>
-                <option value="0x1E">Base Testnet</option>
+                <option value="0x7A">Base Testnet</option>
                 <option value="0xA869">Avalanche Fuji Testnet</option>
                 <option value="0xA4B1">Arbitrum Rinkeby Testnet</option>
                 <option value="0xA5">Optimism Goerli Testnet</option>

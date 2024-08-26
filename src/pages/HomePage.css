@@ -24,7 +24,7 @@ body, html {
   flex-direction: column;
   width: 100%;
   padding: 20px;
-  background-color: #333; /* Dark background for header */
+  background-color: #1C1C1C; /* Slightly lighter dark background for header */
 }
 
 .navbar {
@@ -36,10 +36,15 @@ body, html {
 }
 
 .navbar a {
-  color: #ffffff;
+  color: #61dafb; /* Bright blue for navbar links */
   text-decoration: none;
   font-weight: bold;
   margin: 0 10px; /* Space between links */
+  transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+  color: #21a1f1; /* Slightly darker blue on hover */
 }
 
 .navbar-buttons {
@@ -53,7 +58,7 @@ body, html {
 }
 
 .network-switcher select {
-  background-color: #444;
+  background-color: #333; /* Darker select background */
   color: #ffffff;
   border: 1px solid #666;
   padding: 5px;
@@ -68,6 +73,11 @@ body, html {
   border-radius: 5px;
   font-weight: bold;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.connect-wallet-button:hover {
+  background-color: #E68A00; /* Slightly darker on hover */
 }
 
 /* Future IDOs Section Styling */
@@ -90,4 +100,13 @@ body, html {
   font-size: 1.2em;
   color: #aaaaaa;
   font-style: italic;
+}
+
+.disclaimer {
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px;
+  font-size: 14px;
+  color: #ff3333; /* Bright red for strong emphasis */
+  background-color: #1A1A1A; /* Dark background to match the theme */
 }
